@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import CollectionsPage from '../pages/CollectionsPage'
 import SavePage from '../pages/SavePage'
 import SearchPage from '../pages/SearchPage'
 
@@ -22,7 +23,7 @@ function AppRoutes() {
       <Route path="/save" element={<SavePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/graph-view" element={<PlaceholderPage title="Graph View" />} />
-      <Route path="/collections" element={<PlaceholderPage title="Collections" />} />
+      <Route path="/collections" element={<CollectionsPage />} />
       <Route path="/resurfaced" element={<PlaceholderPage title="Resurfaced" />} />
       <Route path="/highlights" element={<PlaceholderPage title="Highlights" />} />
       <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
