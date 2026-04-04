@@ -3,12 +3,18 @@ import CollectionsPage from '../pages/CollectionsPage'
 import SavePage from '../pages/SavePage'
 import SearchPage from '../pages/SearchPage'
 
-function PlaceholderPage({ title }) {
+function PlaceholderPage({ title, theme }) {
   return (
     <section className="flex min-h-[calc(100vh-5rem)] items-center justify-center">
-      <div className="w-full max-w-2xl rounded-3xl border border-white/10 bg-slate-900/70 p-8 text-center">
-        <h1 className="text-3xl font-semibold text-white">{title}</h1>
-        <p className="mt-3 text-sm leading-7 text-slate-400">
+      <div
+        className={
+          theme === 'light'
+            ? 'w-full max-w-2xl rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-sm'
+            : 'w-full max-w-2xl rounded-3xl border border-gray-800 bg-gray-900 p-8 text-center shadow-sm'
+        }
+      >
+        <h1 className={theme === 'light' ? 'text-3xl font-semibold text-gray-900' : 'text-3xl font-semibold text-white'}>{title}</h1>
+        <p className={theme === 'light' ? 'mt-3 text-sm leading-7 text-gray-600' : 'mt-3 text-sm leading-7 text-gray-400'}>
           This section is ready for the next part of your knowledge app.
         </p>
       </div>
@@ -16,18 +22,18 @@ function PlaceholderPage({ title }) {
   )
 }
 
-function AppRoutes() {
+function AppRoutes({ theme, toggleTheme }) {
   return (
     <Routes>
-      <Route path="/" element={<SavePage />} />
-      <Route path="/save" element={<SavePage />} />
-      <Route path="/search" element={<SearchPage />} />
-      <Route path="/graph-view" element={<PlaceholderPage title="Graph View" />} />
-      <Route path="/collections" element={<CollectionsPage />} />
-      <Route path="/resurfaced" element={<PlaceholderPage title="Resurfaced" />} />
-      <Route path="/highlights" element={<PlaceholderPage title="Highlights" />} />
-      <Route path="/settings" element={<PlaceholderPage title="Settings" />} />
-      <Route path="/upgrade" element={<PlaceholderPage title="Upgrade" />} />
+      <Route path="/" element={<SavePage theme={theme} toggleTheme={toggleTheme} />} />
+      <Route path="/save" element={<SavePage theme={theme} toggleTheme={toggleTheme} />} />
+      <Route path="/search" element={<SearchPage theme={theme} />} />
+      <Route path="/graph-view" element={<PlaceholderPage title="Graph View" theme={theme} />} />
+      <Route path="/collections" element={<CollectionsPage theme={theme} />} />
+      <Route path="/resurfaced" element={<PlaceholderPage title="Resurfaced" theme={theme} />} />
+      <Route path="/highlights" element={<PlaceholderPage title="Highlights" theme={theme} />} />
+      <Route path="/settings" element={<PlaceholderPage title="Settings" theme={theme} />} />
+      <Route path="/upgrade" element={<PlaceholderPage title="Upgrade" theme={theme} />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

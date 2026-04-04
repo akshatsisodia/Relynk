@@ -25,8 +25,9 @@ const savedItems = [
   },
 ]
 
-function SearchPage() {
+function SearchPage({ theme }) {
   const [query, setQuery] = useState('')
+  const isLight = theme === 'light'
 
   const filteredItems = savedItems.filter((item) => {
     const searchableText = `${item.title} ${item.preview}`.toLowerCase()
@@ -35,11 +36,18 @@ function SearchPage() {
 
   return (
     <section className="flex min-h-[calc(100vh-5rem)] items-start justify-center py-8">
-      <div className="w-full max-w-3xl rounded-3xl border border-white/10 bg-slate-900/70 p-8">
+      <div
+        className={
+          isLight
+            ? 'w-full max-w-3xl rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-colors duration-300 ease-in-out'
+            : 'w-full max-w-3xl rounded-3xl border border-gray-800 bg-gray-900 p-8 shadow-sm transition-colors duration-300 ease-in-out'
+        }
+      >
         <PageHeader
           eyebrow="Memora"
           title="Search your saved knowledge"
           description="Use a simple search to quickly find saved links, notes, and snippets."
+          theme={theme}
         />
 
         <div className="mt-8">
@@ -52,17 +60,27 @@ function SearchPage() {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search saved items..."
-            className="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20"
+            className={
+              isLight
+                ? 'w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-colors duration-300 ease-in-out placeholder:text-gray-400 focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400'
+                : 'w-full rounded-2xl border border-gray-700 bg-gray-950 px-4 py-3 text-sm text-white outline-none transition-colors duration-300 ease-in-out placeholder:text-gray-500 focus:border-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-600'
+            }
           />
         </div>
 
         <div className="mt-6 space-y-4">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
-              <SearchResultCard key={item.id} title={item.title} preview={item.preview} />
+              <SearchResultCard key={item.id} title={item.title} preview={item.preview} theme={theme} />
             ))
           ) : (
-            <div className="rounded-2xl border border-white/10 bg-slate-900 px-5 py-6 text-sm text-slate-400">
+            <div
+              className={
+                isLight
+                  ? 'rounded-2xl border border-gray-200 bg-white px-5 py-6 text-sm text-gray-600 shadow-sm transition-colors duration-300 ease-in-out'
+                  : 'rounded-2xl border border-gray-800 bg-gray-900 px-5 py-6 text-sm text-gray-400 shadow-sm transition-colors duration-300 ease-in-out'
+              }
+            >
               No saved items match your search.
             </div>
           )}

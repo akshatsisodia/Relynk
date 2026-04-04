@@ -1,15 +1,34 @@
+import { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import AppRoutes from './routes/AppRoutes'
 
-function App() {
-  return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <div className="flex min-h-screen">
-        <Sidebar />
+const THEME_STORAGE_KEY = 'memora-theme'
 
-        <main className="ml-60 flex-1 bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.14),_transparent_28%),linear-gradient(180deg,_#020617_0%,_#0f172a_100%)] p-8 md:p-10">
+function App() {
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') {
+      return 'light'
+    }
+
+    return window.localStorage.getItem(THEME_STORAGE_KEY) || 'light'
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
+
+  function toggleTheme() {
+    setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'))
+  }
+
+  return (
+    <div className={theme === 'light' ? 'min-h-screen bg-gray-50 text-gray-900 transition-colors duration-300 ease-in-out' : 'min-h-screen bg-gray-950 text-gray-100 transition-colors duration-300 ease-in-out'}>
+      <div className="flex min-h-screen">
+        <Sidebar theme={theme} />
+
+        <main className={theme === 'light' ? 'ml-60 flex-1 bg-gray-50 p-8 transition-colors duration-300 ease-in-out md:p-10' : 'ml-60 flex-1 bg-gray-950 p-8 transition-colors duration-300 ease-in-out md:p-10'}>
           <div className="mx-auto max-w-6xl">
-            <AppRoutes />
+            <AppRoutes theme={theme} toggleTheme={toggleTheme} />
           </div>
         </main>
       </div>
