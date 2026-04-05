@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 const primaryNavItems = [
   { label: 'Home', to: '/', icon: Home },
   { label: 'Search', to: '/search', icon: Search },
-  { label: 'Graph View', to: '/graph-view', icon: ChartNetwork },
+  { label: 'Graph View', to: '/graph', icon: ChartNetwork },
   { label: 'Collections', to: '/collections', icon: FolderKanban },
   { label: 'Resurfaced', to: '/resurfaced', icon: Sparkles },
   { label: 'Highlights', to: '/highlights', icon: Highlighter },
@@ -39,20 +39,22 @@ function Sidebar({ theme }) {
       }
     >
       <div className="flex items-center gap-3 px-2">
-        <div
-          className={
-            isLight
-              ? 'flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-sm font-semibold text-white transition-colors duration-300 ease-in-out'
-              : 'flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-semibold text-gray-900 transition-colors duration-300 ease-in-out'
-          }
-        >
-          R
-        </div>
-        <div>
-          <p className={isLight ? 'text-md font-semibold tracking-wide text-gray-900' : 'text-md font-semibold tracking-wide text-white'}>
-            RELYNK
-          </p>
-          <p className={isLight ? 'text-xs text-gray-400' : 'text-xs text-gray-500'}>Knowledge workspace</p>
+        <div className="flex items-center gap-3">
+          <div
+            className={
+              isLight
+                ? 'flex h-10 w-10 items-center justify-center rounded-xl bg-gray-900 text-sm font-semibold text-white transition-colors duration-300 ease-in-out'
+                : 'flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-semibold text-gray-900 transition-colors duration-300 ease-in-out'
+            }
+          >
+            R
+          </div>
+          <div>
+            <p className={isLight ? 'text-md font-semibold tracking-wide text-gray-900' : 'text-md font-semibold tracking-wide text-white'}>
+              RELYNK
+            </p>
+            <p className={isLight ? 'text-xs text-gray-400' : 'text-xs text-gray-500'}>Knowledge workspace</p>
+          </div>
         </div>
       </div>
 

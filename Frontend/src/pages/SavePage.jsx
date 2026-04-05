@@ -54,8 +54,6 @@ function SavePage({ theme, toggleTheme }) {
     if (!value.trim()) {
       return
     }
-
-    console.log('Saved to Memora:', value)
     setValue('')
   }
 
@@ -75,7 +73,6 @@ function SavePage({ theme, toggleTheme }) {
             <span className={`inline-flex transition-transform duration-300 ease-in-out ${isLight ? 'rotate-0' : 'rotate-180'}`}>
               {isLight ? <Moon size={16} /> : <Sun size={16} />}
             </span>
-            {isLight ? 'Dark Mode' : 'Light Mode'}
           </button>
         </div>
 

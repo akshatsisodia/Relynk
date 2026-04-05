@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Sidebar from './components/Sidebar'
 import AppRoutes from './routes/AppRoutes'
 
-const THEME_STORAGE_KEY = 'memora-theme'
+const THEME_STORAGE_KEY = 'relynk-theme'
 
 function App() {
   const [theme, setTheme] = useState(() => {
